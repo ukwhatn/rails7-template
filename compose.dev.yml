@@ -5,6 +5,8 @@ services:
       dockerfile: ./deployment/dockerfiles/web/Dockerfile
       args:
         RUBY_VERSION: 3.2.2
+    image: web-dev
+    entrypoint: ["bin/docker-entrypoint.dev.sh"]
     command: bash -c "rm -f tmp/pids/server.pid && bin/rails s -p 3000 -b '0.0.0.0'"
     volumes:
       - .:/usr/src/app
@@ -15,7 +17,6 @@ services:
       - HISTFILE=/usr/src/app/log/.bash_history
       - DB_HOST=${DEV_DB_HOST}
       - DB_PORT=${DEV_DB_PORT}
-      - DB_NAME=${DEV_DB_NAME}
       - DB_USER=${DEV_DB_USER}
       - DB_PASSWORD=${DEV_DB_PASSWORD}
     depends_on:
@@ -27,7 +28,6 @@ services:
   db:
     image: postgres:15.4
     environment:
-      - POSTGRES_DB=${DEV_DB_NAME}
       - POSTGRES_USER=${DEV_DB_USER}
       - POSTGRES_PASSWORD=${DEV_DB_PASSWORD}
     volumes:
@@ -38,15 +38,11 @@ services:
       interval: 2s
       timeout: 5s
       retries: 30
-    networks:
-      - backend
 
   redis:
     image: redis:7.2.0
     volumes:
       - redis_data:/data
-    networks:
-      - backend
     healthcheck:
       test: redis-cli ping
       interval: 2s
@@ -57,7 +53,3 @@ volumes:
   pg_data:
   redis_data:
   bundle:
-
-networks:
-  backend:
-    driver: bridge
