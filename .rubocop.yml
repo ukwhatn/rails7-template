@@ -1,0 +1,87 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-capybara
+  - rubocop-performance
+
+AllCops:
+  TargetRubyVersion: 3.2.2
+  TargetRailsVersion: 7.0.1
+  DisabledByDefault: true
+  DisplayCopNames: true
+  NewCops: enable
+  Exclude:
+    - "bin/**/*"
+    - "vendor/**/*"
+    - "public/**/*"
+    - "node_modules/**/*"
+    - "db/schema.rb"
+
+# ----- bundler -----
+Bundler:
+  Enabled: true
+
+# ----- layout -----
+
+Layout:
+  Enabled: true
+
+# ----- lint -----
+
+Lint:
+  Enabled: true
+
+Lint/EmptyBlock:
+  Enabled: false
+  Exclude:
+    - "config/routes.rb"
+
+# ----- naming -----
+
+Naming:
+  Enabled: true
+
+# ----- security -----
+
+Security:
+  Enabled: true
+
+# ----- performance -----
+
+Performance:
+  Enabled: true
+
+# ----- style -----
+
+# ブロックの終了部分が適切にスタイル指定されているか
+Style/EndBlock:
+  Enabled: true
+# ハッシュの構文が適切か
+Style/HashSyntax:
+  Enabled: true
+# 文字列リテラルが適切にスタイル指定されているか
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: "double_quotes"
+  Exclude:
+    - "config/**/*.rb"
+    - Rakefile
+# caseの等価性が適切にチェックされているか
+Style/CaseEquality:
+  Enabled: true
+# クラスメソッドが適切に定義されているか
+Style/ClassMethods:
+  Enabled: true
+# クラス変数が適切に使用されているか
+Style/ClassVars:
+  Enabled: true
+# collectionメソッドが適切に使用されているか
+Style/CollectionMethods:
+  Enabled: true
+  PreferredMethods:
+    collect: "map"
+    collect!: "map!"
+    inject: "reduce"
+    detect: "find"
+    find_all: "select"
+

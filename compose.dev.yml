@@ -1,0 +1,63 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: ./deployment/dockerfiles/web/Dockerfile
+      args:
+        RUBY_VERSION: 3.2.2
+    command: bash -c "rm -f tmp/pids/server.pid && bin/rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/usr/src/app
+      - bundle:/usr/local/bundle
+    ports:
+      - "127.0.0.1:59998:3000"
+    environment:
+      - HISTFILE=/usr/src/app/log/.bash_history
+      - DB_HOST=${DEV_DB_HOST}
+      - DB_PORT=${DEV_DB_PORT}
+      - DB_NAME=${DEV_DB_NAME}
+      - DB_USER=${DEV_DB_USER}
+      - DB_PASSWORD=${DEV_DB_PASSWORD}
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  db:
+    image: postgres:15.4
+    environment:
+      - POSTGRES_DB=${DEV_DB_NAME}
+      - POSTGRES_USER=${DEV_DB_USER}
+      - POSTGRES_PASSWORD=${DEV_DB_PASSWORD}
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    restart: always
+    healthcheck:
+      test: pg_isready -U postgres
+      interval: 2s
+      timeout: 5s
+      retries: 30
+    networks:
+      - backend
+
+  redis:
+    image: redis:7.2.0
+    volumes:
+      - redis_data:/data
+    networks:
+      - backend
+    healthcheck:
+      test: redis-cli ping
+      interval: 2s
+      timeout: 5s
+      retries: 30
+
+volumes:
+  pg_data:
+  redis_data:
+  bundle:
+
+networks:
+  backend:
+    driver: bridge
