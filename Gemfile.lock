@@ -344,8 +344,8 @@ DEPENDENCIES
   rack-mini-profiler
   rails (~> 7.0.7, >= 7.0.7.2)
   rails-i18n
-  redis (~> 5.0)
-  redis-actionpack (~> 5.3)
+  redis
+  redis-actionpack
   rspec-rails
   rubocop
   rubocop-performance
