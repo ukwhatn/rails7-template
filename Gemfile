@@ -15,7 +15,7 @@ gem "sprockets-rails"
 gem "pg", "~> 1.1"
 
 # Web server
-gem "puma", "~> 5.0"
+gem "puma", "~> 6.3"
 
 # Use import maps
 gem "importmap-rails"
