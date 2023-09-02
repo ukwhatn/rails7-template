@@ -104,6 +104,7 @@ GEM
       activesupport (>= 6.1)
     google-protobuf (3.24.2-aarch64-linux)
     google-protobuf (3.24.2-arm64-darwin)
+    google-protobuf (3.24.2-x86_64-linux)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     i18n_generators (2.2.2)
@@ -153,6 +154,8 @@ GEM
       racc (~> 1.4)
     nokogiri (1.15.4-arm64-darwin)
       racc (~> 1.4)
+    nokogiri (1.15.4-x86_64-linux)
+      racc (~> 1.4)
     parallel (1.23.0)
     parser (3.2.2.3)
       ast (~> 2.4.1)
@@ -161,7 +164,7 @@ GEM
     psych (5.1.0)
       stringio
     public_suffix (5.0.3)
-    puma (5.6.7)
+    puma (6.3.1)
       nio4r (~> 2.0)
     racc (1.7.1)
     rack (2.2.8)
@@ -275,6 +278,8 @@ GEM
       google-protobuf (~> 3.23)
     sass-embedded (1.66.1-arm64-darwin)
       google-protobuf (~> 3.23)
+    sass-embedded (1.66.1-x86_64-linux-gnu)
+      google-protobuf (~> 3.23)
     sassc (2.4.0)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
@@ -327,6 +332,7 @@ GEM
 PLATFORMS
   aarch64-linux
   arm64-darwin-22
+  x86_64-linux
 
 DEPENDENCIES
   bootsnap
@@ -340,7 +346,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   pg (~> 1.1)
-  puma (~> 5.0)
+  puma (~> 6.3)
   rack-mini-profiler
   rails (~> 7.0.7, >= 7.0.7.2)
   rails-i18n
