@@ -30,8 +30,8 @@ gem "stimulus-rails"
 gem "jbuilder"
 
 # Redis
-gem "redis"
-gem "redis-actionpack"
+gem "redis", "~> 4.8.1", "< 5"
+gem "redis-rails"
 
 # Create password hash
 # gem "bcrypt", "~> 3.1.7"
