@@ -1,24 +1,46 @@
-# README
+# Rails7 Template
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## リポジトリを作成・Cloneしてからすること
 
-Things you may want to cover:
+### 1. .envを作成
+```shell
+make init
+```
+### 2. Appをリネーム
+`config/application.rb`の`module Rails7Template`を変更
 
-* Ruby version
+## コマンド
+### development環境
+#### 起動
+```shell
+make dev
+# Railsコンテナのビルド・up・ログ表示まで実行されます
+# それぞれのコマンドを個別に実行したい場合はmake build-dev, make up-dev, make log-devを実行してください
+```
+#### 終了
+```shell
+make down-dev
+```
+#### 破棄
+```shell
+make clean-dev
+# down --rmi all --volumes --remove-orphansが実行されます
+```
 
-* System dependencies
+### production環境
+#### 起動
+```shell
+make prod
+# Railsコンテナのビルド・up・ログ表示まで実行されます
+# CDなどではmake build-prod, make up-prodを実行してください
+```
+#### 終了
+```shell
+make down-prod
+```
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### その他
+#### redis-cliに入る
+```shell
+make redis-cli
+```
